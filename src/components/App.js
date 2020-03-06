@@ -7,6 +7,7 @@ import {
   Route  
 } from 'react-router-dom';
 import Header from './header/Header.js';
+import Dazed from './processing/dazed.js';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Switch>
           <Route path='/hello-sketch' component={HelloSketch} />
           <Route path='/fractal-tree' component={FirstFractal} />
+          <Route path='/dazed' component={Dazed} />
         </Switch>
       </Router>
     </>

@@ -13,6 +13,10 @@ exports[`App component renders App 1`] = `
         component={[Function]}
         path="/fractal-tree"
       />
+      <Route
+        component={[Function]}
+        path="/dazed"
+      />
     </Switch>
   </BrowserRouter>
 </Fragment>
