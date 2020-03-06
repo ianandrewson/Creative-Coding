@@ -9,6 +9,7 @@ export default function Header() {
       <nav>
         <span><Link to={'/hello-sketch'}>hello-sketch</Link> </span>
         <span><Link to={'/fractal-tree'}>fractal-tree</Link> </span>
+        <span><Link to={'/dazed'}>dazed</Link></span>
       </nav>
     </div>
   );
