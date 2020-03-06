@@ -6,14 +6,18 @@ import {
   Switch,
   Route  
 } from 'react-router-dom';
+import Header from './header/Header.js';
 
 export default function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path='/hello-sketch' component={HelloSketch} />
-        <Route path='/fractal-tree' component={FirstFractal} />
-      </Switch>
-    </Router>
+    <>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path='/hello-sketch' component={HelloSketch} />
+          <Route path='/fractal-tree' component={FirstFractal} />
+        </Switch>
+      </Router>
+    </>
   );
 }
