@@ -42,8 +42,14 @@ export default function FirstFractal() {
     p5.noLoop();
   };
 
+  // const redrawCallback = p5 => {
+  //   p5.redraw();
+  // };
+
   return (
-    <Sketch setup={setup} draw={draw}/>
+    <>
+      <Sketch setup={setup} draw={draw}/>
+    </>
   );
 
 }
