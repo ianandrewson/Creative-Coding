@@ -22,11 +22,33 @@ export default function Shrink() {
   }
 
   const setup = p5 => {
-
+    p5.createCanvas(400, 400);
+    p5.noStroke();
+    p5.ellipseMode(p5.CENTER);
   };
 
-  const draw = p5 => {
+  let circleList = [];
 
+  const draw = p5 => {
+    p5.background(0);
+    if(circleList.length < 225) {
+      circleList.append(Circle(p5.color(randomInt(255), randomInt(255), randomInt(255)), randomInt(400), randomInt(400), 100));
+      // circleList.append(circleList[-1])
+      // circleList[-1].c = (255) 
+    }
+    circleList.forEach(circle => {
+      circle.display();
+      if(circle.rad >= -1) {
+        circle.shrink();
+      } else {
+        //Ew, mutations
+        circleList = circleList.filter(circle => circle.rad > -1);
+      }
+    });     
+  };
+
+  const randomInt = (max, min = 0) => {
+    return Math.ceil(Math.random() * (max - min) + min);
   };
 
   return (
