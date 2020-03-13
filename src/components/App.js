@@ -10,6 +10,7 @@ import Header from './header/Header.js';
 import Dazed from './processing/dazed.js';
 import Shrink from './processing/Shrink.js';
 import Polaris from './processing/Polaris.js';
+import CounterRotate from './processing/CounterRotate.js';
 
 export default function App() {
   return (
@@ -17,7 +18,8 @@ export default function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path='/Polaris' component={Polaris} />
+          <Route path='/polaris' component={Polaris} />
+          <Route path='/counter-rotate' component={CounterRotate} />
           <Route path='/hello-sketch' component={HelloSketch} />
           <Route path='/fractal-tree' component={FirstFractal} />
           <Route path='/dazed' component={Dazed} />

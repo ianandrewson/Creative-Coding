@@ -8,6 +8,7 @@ export default function Header() {
       <h1>Creative Coding with P5</h1>
       <nav>
         <span><Link to={'/polaris'}>Polaris</Link></span>
+        <span><Link to={'/counter-rotate'}>Counter Rotate</Link></span>
         <span><Link to={'/hello-sketch'}>Hello Sketch</Link> </span>
         <span><Link to={'/fractal-tree'}>Fractal Tree</Link> </span>
         <span><Link to={'/dazed'}>Dazed</Link></span>
