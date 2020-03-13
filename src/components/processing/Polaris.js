@@ -9,8 +9,8 @@ export default function Polaris() {
   const recalculateThreshold = 10;
 
   const circles = [];
-  const allCirclesAvgPoint = [0, 0];
-  const previousAllCirclesAvgPoint = [0, 0];
+  let allCirclesAvgPoint = [0, 0];
+  let previousAllCirclesAvgPoint = [0, 0];
 
   class Circle{
     constructor(allCirclesAvgPoint, pullToTarget, pullToAvgPoint, recalculateThreshold, p5) {
@@ -75,6 +75,27 @@ export default function Polaris() {
     return Math.ceil(Math.random() * (max - min) + min);
   };
 
+  const updateAvg = (circles, previousAllCirclesAvgPoint, p5) => {
+    let x = 0;
+    let y = 0;
+    circles.forEach(circle => {
+      x += circle.currentPos[0];
+      y += circle.currentPos[1];
+    });
+    x = x / circles.length;
+    y = y / circles.length;
+    const avgPnt = [x, y];
+    //If the avgerage didn't move, reset list
+    if(previousAllCirclesAvgPoint === avgPnt) {
+      circles = [];
+      for(let i = 0; i < numCircles; i++) {
+        circles.push(new Circle(allCirclesAvgPoint, pullToTarget, pullToAvgPoint, recalculateThreshold, p5));
+        return updateAvg(circles, 0);
+      }
+      return avgPnt;
+    }
+  };
+
 
   const setup = p5 => {
     p5.createCanvas(600, 600);
@@ -84,118 +105,35 @@ export default function Polaris() {
     p5.stroke(0);
     for(let i = 0; i < numCircles; i++) {
       circles.push(new Circle(allCirclesAvgPoint, pullToTarget, pullToAvgPoint, recalculateThreshold, p5));
-      circles[i].display();
+      circles[i].display(p5);
     }
   };
 
   const draw = p5 => {
-    
+    p5.background(255);
+    //update average point of all circles
+    previousAllCirclesAvgPoint = allCirclesAvgPoint;
+    allCirclesAvgPoint = updateAvg(circles, previousAllCirclesAvgPoint, p5);
+    circles.forEach(item => {
+      //update location and path to average
+      
+      item.updateCurrentGlobalAvgPoint(allCirclesAvgPoint, p5);
+      //move to final target, taking into consideration pull
+      item.move(p5);
+      //display circle after moving to new location
+      item.display(p5);
+      item.displayLine(allCirclesAvgPoint, p5);
+    });
+    //draw circle around the average point of all circles
+    p5.ellipse(allCirclesAvgPoint[0], allCirclesAvgPoint[1], 20, 20);
   };
 
-  console.log('registered the draw loop');
-  
   return (
     <Sketch setup={setup} draw={draw} />
   );
 }
 
-
-// #Favorite numbers: 3, 100
-// numCircles = 100
-// allCirclesAvgPoint = [0,0]
-// #In Development under updateAvg; switch PTT and PTAP
-// PTT = 1
-// PTAP = 3
-// thresh = 10
-// circles = []
-// previousAllCirclesAvgPoint = [0, 0]; = [0,0]
-
-// def setup():
-//     size(600, 600)
-//     ellipseMode(CENTER)
-//     noFill()
-//     frameRate(30)
-//     stroke(0)
-//     for i in range (numCircles):
-//         circles.append(circle(allCirclesAvgPoint, PTT, PTAP, thresh))
-//         circles[i].display()
     
-        
-
-// def draw():
-//     global allCirclesAvgPoint
-//     background(255)
-//     #update average point of all circles
-//     previousAllCirclesAvgPoint = [0, 0]; = allCirclesAvgPoint
-//     allCirclesAvgPoint = updateAvg(circles, previousAllCirclesAvgPoint = [0, 0];)
-//     #update location and path to average
-//     for c in circles:
-//         c.update(allCirclesAvgPoint)
-//         #move to final target with pull from average via arc
-//         c.move()
-//         #display circle after moving to new location
-//         c.display()
-//         c.displayLine(allCirclesAvgPoint)
-//     ellipse(allCirclesAvgPoint[0], allCirclesAvgPoint[1], 20, 20)
-
-// def updateAvg(circles, previousAllCirclesAvgPoint = [0, 0];):
-//     x = 0
-//     y = 0
-//     for c in circles:
-//         x += c.currentPos[0]
-//         y += c.currentPos[1]
-//     x = x/len(circles)
-//     y = y/len(circles)
-//     avgPnt = [x,y]
-//     # If the avgerage didn't move, reset list
-//     if previousAllCirclesAvgPoint = [0, 0]; == avgPnt:
-//         circles = []
-//         for i in range (numCircles):
-//             circles.append(circle(allCirclesAvgPoint, PTT, PTAP, thresh))
-//             return updateAvg(circles, 0)
-//     return avgPnt
-        
-// class circle:
-//     def __init__(self, allCirAvgPnt, pullToTarget, pullToAvgPnt, thresh):
-//         self.currentPos = [random(width), random(height)]
-//         self.lastTarget = self.currentPos
-//         self.nextTarget = [random(width), random(height)]
-//         self.allCirAvgPnt = allCirAvgPnt
-//         self.pullToTarget = pullToTarget
-//         self.pullToAvgPnt = pullToAvgPnt
-//         self.thresh = thresh
-//     def update(self, allCirclesAvgPoint):
-//         self.allCirAvgPnt = allCirclesAvgPoint
-//         #If circle is close enough to target, get a new target
-//         if (p5.(self.currentPos[0], self.currentPos[1], self.nextTarget[0], self.nextTarget[1]) < thresh:)
-//             self.lastTarget = self.nextTarget
-//             self.nextTarget = (random(width), random(height))
-//     def move(self):
-//         vectorMain = PVector(self.nextTarget[0], self.nextTarget[1])
-//         #print vectorMain
-//         vectorMain.setMag(self.pullToTarget)
-//         vectorAvgPnt = PVector(self.allCirAvgPnt[0], self.allCirAvgPnt[1])
-//         vectorAvgPnt.setMag(self.pullToAvgPnt)
-//         resultVector = PVector.add(vectorMain, vectorAvgPnt)
-//         #print resultVector
-//         if self.currentPos[0] > self.nextTarget[0]:
-//             self.currentPos[0] -= resultVector.x
-//         if self.currentPos[0] < self.nextTarget[0]:
-//             self.currentPos[0] += resultVector.x
-//         if self.currentPos[1] > self.nextTarget[1]:
-//             self.currentPos[1] -= resultVector.y
-//         if self.currentPos[1] < self.nextTarget[1]:
-//             self.currentPos[1] += resultVector.y
-//         #self.currentPos += [resultVector.x, resultVector.y]
-//     def moveVec(self):
-//         newVel = vel
-//         newPos = pos
-//     def display(self):
-//         ellipse(self.currentPos[0], self.currentPos[1], 10, 10)
-//     def displayLine(self, allCirclesAvgPoint):
-//         line(self.currentPos[0], self.currentPos[1], allCirclesAvgPoint[0], allCirclesAvgPoint[1])
-    
-        
 // #         if self.currentPos[0] > self.nextTarget[0]:
 // #             self.currentPos[0] -= 
     

@@ -17,7 +17,7 @@ export default function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path='Polaris' component={Polaris} />
+          <Route path='/Polaris' component={Polaris} />
           <Route path='/hello-sketch' component={HelloSketch} />
           <Route path='/fractal-tree' component={FirstFractal} />
           <Route path='/dazed' component={Dazed} />
