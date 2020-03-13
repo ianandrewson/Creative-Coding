@@ -2,7 +2,6 @@ import React from 'react';
 import Sketch from 'react-p5';
 
 export default function Shrink() {
-  
   class Circle {
     constructor(color, xpos, ypos, rad) {
       this.color = color;
@@ -17,7 +16,7 @@ export default function Shrink() {
     }
         
     shrink() {
-      self.rad -= 1;
+      this.rad -= 1;
     }
   }
 
@@ -32,12 +31,12 @@ export default function Shrink() {
   const draw = p5 => {
     p5.background(0);
     if(circleList.length < 225) {
-      circleList.append(Circle(p5.color(randomInt(255), randomInt(255), randomInt(255)), randomInt(400), randomInt(400), 100));
+      circleList.push(new Circle(p5.color(randomInt(255), randomInt(255), randomInt(255)), randomInt(400), randomInt(400), 100));
       // circleList.append(circleList[-1])
       // circleList[-1].c = (255) 
     }
     circleList.forEach(circle => {
-      circle.display();
+      circle.display(p5);
       if(circle.rad >= -1) {
         circle.shrink();
       } else {
