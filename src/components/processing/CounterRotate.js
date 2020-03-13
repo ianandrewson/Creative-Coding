@@ -20,7 +20,18 @@ export default function CounterRotate() {
   };
 
   const draw = p5 => {
+    p5.background(255, 100, 0);
+    const circleList = [];
+    p5.fill(0);
     p5.noLoop();
+    p5.translate(p5.width / 2, p5.height / 2);
+    p5.push();
+    p5.rotate(-p5.radians(p5.frameCount / 180.0) * 25);
+    for(let i = -p5.width * .75; i < p5.width * .75; i += radius1) {
+      for(let j = -p5.height * .75; j < p5.height * .75; j += radius1){
+        p5.ellipse(i, j, radius1, radius1);
+      }
+    }
   };
 
   return (
