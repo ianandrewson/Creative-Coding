@@ -29,7 +29,8 @@ export default function Polaris() {
       //If circle is close enough to target, get a new target
       if(p5.dist(this.currentPos[0], this.currentPos[1], this.nextTarget[0], this.nextTarget[1]) < recalculateThreshold){
         this.lastTarget = this.nextTarget;
-        this.nextTarget = (randomInt(p5.width), randomInt(p5.height));
+        this.nextTarget = [randomInt(p5.width), randomInt(p5.height)];
+        console.log('next target', this.nextTarget);
       }
     }
 
@@ -38,14 +39,15 @@ export default function Polaris() {
     }
 
     move(p5) {
-      const vectorMain = p5.PVector(this.nextTarget[0], this.nextTarget[1]);
+      const vectorMain = p5.createVector(this.nextTarget[0], this.nextTarget[1]);
       vectorMain.setMag(this.pullToTarget);
     
-      const vectorAvgPnt = p5.PVector(this.allCirclesAvgPoint[0], this.allCirclesAvgPoint[1]);
+      const vectorAvgPnt = p5.createVector(this.allCirclesAvgPoint[0], this.allCirclesAvgPoint[1]);
+
       vectorAvgPnt.setMag(this.pullToAvgPnt);
 
-      const resultVector = p5.PVector.add(vectorMain, vectorAvgPnt);
-    
+      const resultVector = vectorMain.add(vectorAvgPnt);
+
       if(this.currentPos[0] > this.nextTarget[0]){
         this.currentPos[0] -= resultVector.x;
       }
@@ -55,8 +57,8 @@ export default function Polaris() {
       if(this.currentPos[1] > this.nextTarget[1]){
         this.currentPos[1] -= resultVector.y;
       }
-      if(self.currentPos[1] < self.nextTarget[1]){
-        self.currentPos[1] += resultVector.y;
+      if(this.currentPos[1] < this.nextTarget[1]){
+        this.currentPos[1] += resultVector.y;
       }
       //self.currentPos += [resultVector.x, resultVector.y]
     }
@@ -82,8 +84,8 @@ export default function Polaris() {
       x += circle.currentPos[0];
       y += circle.currentPos[1];
     });
-    x = x / circles.length;
-    y = y / circles.length;
+    x = Math.round(x / circles.length);
+    y = Math.round(y / circles.length);
     const avgPnt = [x, y];
     //If the avgerage didn't move, reset list
     if(previousAllCirclesAvgPoint === avgPnt) {
@@ -92,8 +94,8 @@ export default function Polaris() {
         circles.push(new Circle(allCirclesAvgPoint, pullToTarget, pullToAvgPoint, recalculateThreshold, p5));
         return updateAvg(circles, 0);
       }
-      return avgPnt;
     }
+    return avgPnt;
   };
 
 
@@ -116,7 +118,6 @@ export default function Polaris() {
     allCirclesAvgPoint = updateAvg(circles, previousAllCirclesAvgPoint, p5);
     circles.forEach(item => {
       //update location and path to average
-      
       item.updateCurrentGlobalAvgPoint(allCirclesAvgPoint, p5);
       //move to final target, taking into consideration pull
       item.move(p5);
@@ -126,27 +127,12 @@ export default function Polaris() {
     });
     //draw circle around the average point of all circles
     p5.ellipse(allCirclesAvgPoint[0], allCirclesAvgPoint[1], 20, 20);
+    // if(p5.frameCount > 1) {
+    //   p5.noLoop();
+    // }
   };
 
   return (
     <Sketch setup={setup} draw={draw} />
   );
 }
-
-    
-// #         if self.currentPos[0] > self.nextTarget[0]:
-// #             self.currentPos[0] -= 
-    
-        
-// #     #arcToTarget
-// #     #arcToAvgPnt
-// #     display
-// #     
-// # currentPos
-// # pullToTarget
-// # pullToAvgPnt
-// # lastTarget
-// # nextTarget
-// # allCirAvgPnt
-// # update
-// # move
