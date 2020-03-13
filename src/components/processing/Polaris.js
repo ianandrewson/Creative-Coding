@@ -58,7 +58,17 @@ export default function Polaris() {
       if(self.currentPos[1] < self.nextTarget[1]){
         self.currentPos[1] += resultVector.y;
       }
+      //self.currentPos += [resultVector.x, resultVector.y]
     }
+
+    displayLine(allCirclesAvgPoint, p5){
+      p5.line(this.currentPos[0], this.currentPos[1], allCirclesAvgPoint[0], allCirclesAvgPoint[1]);
+    }
+
+    // moveVec(){
+    //   const newVel = vel;
+    //   const newPos = pos;
+    // }
   }
 
   const randomInt = (max, min = 0) => {
@@ -77,14 +87,6 @@ export default function Polaris() {
       circles[i].display();
     }
   };
-
-  //         #self.currentPos += [resultVector.x, resultVector.y]
-  //     def moveVec(self):
-  //         newVel = vel
-  //         newPos = pos
-  //     def displayLine(self, allCirclesAvgPoint):
-  //         line(self.currentPos[0], self.currentPos[1], allCirclesAvgPoint[0], allCirclesAvgPoint[1])
-  
 
   const draw = p5 => {
     
