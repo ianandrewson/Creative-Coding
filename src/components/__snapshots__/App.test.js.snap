@@ -7,6 +7,10 @@ exports[`App component renders App 1`] = `
     <Switch>
       <Route
         component={[Function]}
+        path="/Polaris"
+      />
+      <Route
+        component={[Function]}
         path="/hello-sketch"
       />
       <Route
@@ -16,6 +20,10 @@ exports[`App component renders App 1`] = `
       <Route
         component={[Function]}
         path="/dazed"
+      />
+      <Route
+        component={[Function]}
+        path="/shrink"
       />
     </Switch>
   </BrowserRouter>

@@ -30,7 +30,6 @@ export default function Polaris() {
       if(p5.dist(this.currentPos[0], this.currentPos[1], this.nextTarget[0], this.nextTarget[1]) < recalculateThreshold){
         this.lastTarget = this.nextTarget;
         this.nextTarget = [randomInt(p5.width), randomInt(p5.height)];
-        console.log('next target', this.nextTarget);
       }
     }
 
