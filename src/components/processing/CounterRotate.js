@@ -2,14 +2,8 @@ import React from 'react';
 import Sketch from 'react-p5';
 
 export default function CounterRotate() {
-  const radius1 = 50;
+  const radius1 = 37.5;
   const radius2 = 50;
-
-  class Circle {
-    constructor(radius) {
-      this.radius = radius;
-    }
-  }
 
   const setup = p5 => {
     p5.createCanvas(600, 600);
@@ -21,7 +15,6 @@ export default function CounterRotate() {
 
   const draw = p5 => {
     p5.background(255, 100, 0);
-    const circleList = [];
     p5.fill(0);
     p5.translate(p5.width / 2, p5.height / 2);
     p5.push();
@@ -40,7 +33,7 @@ export default function CounterRotate() {
         p5.ellipse(i, j, radius2, radius2);
       }
     }
-    
+    p5.pop();
   };
 
   return (
