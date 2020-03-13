@@ -7,7 +7,11 @@ exports[`App component renders App 1`] = `
     <Switch>
       <Route
         component={[Function]}
-        path="/Polaris"
+        path="/polaris"
+      />
+      <Route
+        component={[Function]}
+        path="/counter-rotate"
       />
       <Route
         component={[Function]}
