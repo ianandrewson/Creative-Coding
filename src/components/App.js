@@ -20,6 +20,7 @@ export default function App() {
         <Header />
         <div className={styles.sketchContainer}>
           <Switch>
+            <Route exact path='/' component={Polaris} />
             <Route path='/polaris' component={Polaris} />
             <Route path='/counter-rotate' component={CounterRotate} />
             <Route path='/hello-sketch' component={HelloSketch} />
