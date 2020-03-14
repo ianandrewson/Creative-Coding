@@ -1,3 +1,3 @@
-#Creative Coding with P5
+###Creative Coding with P5
 
-deployed here: 
+deployed here: https://creative-coding-ian.netlify.com/polaris
