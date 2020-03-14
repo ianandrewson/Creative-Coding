@@ -6,9 +6,9 @@ export default function MainSketch() {
   // const x = 70;
   // const y = 70;
 
-  const setup = (p5) => {
+  const setup = (p5, parent) => {
     // let cnv = p5.createCanvas(500, 500);
-    p5.createCanvas(500, 500);
+    p5.createCanvas(500, 500).parent(parent);
     p5.fill(255);
     p5.stroke(0);
     p5.background(255);

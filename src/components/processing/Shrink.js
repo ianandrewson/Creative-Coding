@@ -20,8 +20,8 @@ export default function Shrink() {
     }
   }
 
-  const setup = p5 => {
-    p5.createCanvas(400, 400);
+  const setup = (p5, parent) => {
+    p5.createCanvas(400, 400).parent(parent);
     p5.noStroke();
     p5.ellipseMode(p5.CENTER);
   };

@@ -1,0 +1,5 @@
+.sketchContainer {
+  padding: 1em;
+  display: grid;
+  justify-content: center;
+}

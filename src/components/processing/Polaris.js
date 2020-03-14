@@ -98,8 +98,8 @@ export default function Polaris() {
   };
 
 
-  const setup = p5 => {
-    p5.createCanvas(600, 600);
+  const setup = (p5, parent) => {
+    p5.createCanvas(600, 600).parent(parent);
     p5.ellipseMode(p5.CENTER);
     p5.noFill();
     p5.frameRate(30);

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Header.css';
 
 export default function Header() {
 
   return (
-    <div>
-      <h1>Creative Coding with P5</h1>
-      <nav>
+    <div className={styles.container}>
+      <h1 className={styles.h1}>Creative Coding with P5</h1>
+      <nav className={styles.links}>
         <span><Link to={'/polaris'}>Polaris</Link></span>
         <span><Link to={'/counter-rotate'}>Counter Rotate</Link></span>
         <span><Link to={'/hello-sketch'}>Hello Sketch</Link> </span>
