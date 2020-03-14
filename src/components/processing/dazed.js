@@ -30,8 +30,8 @@ export default function Dazed() {
     }
   }
   
-  const setup = p5 => {
-    p5.createCanvas(500, 500);
+  const setup = (p5, parent) => {
+    p5.createCanvas(500, 500).parent(parent);
     p5.noStroke();
     p5.background(255);
   };

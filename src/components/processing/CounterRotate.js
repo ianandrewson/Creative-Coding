@@ -5,8 +5,8 @@ export default function CounterRotate() {
   const radius1 = 37.5;
   const radius2 = 50;
 
-  const setup = p5 => {
-    p5.createCanvas(600, 600);
+  const setup = (p5, parent) => {
+    p5.createCanvas(600, 600).parent(parent);
     p5.background(255, 165, 0);
     p5.ellipseMode(p5.CORNER);
     p5.frameRate(30);

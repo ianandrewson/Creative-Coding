@@ -29,8 +29,8 @@ export default function FirstFractal() {
     }
   }
 
-  const setup = p5 => {
-    p5.createCanvas(1100, 725);
+  const setup = (p5, parent) => {
+    p5.createCanvas(1100, 725).parent(parent);
     p5.background(0);
     p5.stroke(0);
     p5.colorMode(p5.RGB);

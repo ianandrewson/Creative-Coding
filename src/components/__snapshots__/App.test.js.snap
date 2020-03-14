@@ -4,32 +4,36 @@ exports[`App component renders App 1`] = `
 <Fragment>
   <BrowserRouter>
     <Header />
-    <Switch>
-      <Route
-        component={[Function]}
-        path="/polaris"
-      />
-      <Route
-        component={[Function]}
-        path="/counter-rotate"
-      />
-      <Route
-        component={[Function]}
-        path="/hello-sketch"
-      />
-      <Route
-        component={[Function]}
-        path="/fractal-tree"
-      />
-      <Route
-        component={[Function]}
-        path="/dazed"
-      />
-      <Route
-        component={[Function]}
-        path="/shrink"
-      />
-    </Switch>
+    <div
+      className="sketchContainer"
+    >
+      <Switch>
+        <Route
+          component={[Function]}
+          path="/polaris"
+        />
+        <Route
+          component={[Function]}
+          path="/counter-rotate"
+        />
+        <Route
+          component={[Function]}
+          path="/hello-sketch"
+        />
+        <Route
+          component={[Function]}
+          path="/fractal-tree"
+        />
+        <Route
+          component={[Function]}
+          path="/dazed"
+        />
+        <Route
+          component={[Function]}
+          path="/shrink"
+        />
+      </Switch>
+    </div>
   </BrowserRouter>
 </Fragment>
 `;
