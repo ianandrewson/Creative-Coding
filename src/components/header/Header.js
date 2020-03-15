@@ -11,10 +11,10 @@ export default function Header() {
         <span><Link to={'/polaris'}>Polaris</Link></span>
         <span><Link to={'/boxer'}>Boxer</Link></span>
         <span><Link to={'/counter-rotate'}>Counter Rotate</Link></span>
-        <span><Link to={'/hello-sketch'}>Hello Sketch</Link> </span>
+        <span><Link to={'/shrink'}>Shrink</Link></span>
         <span><Link to={'/fractal-tree'}>Fractal Tree</Link> </span>
         <span><Link to={'/dazed'}>Dazed</Link></span>
-        <span><Link to={'/shrink'}>Shrink</Link></span>
+        <span><Link to={'/hello-sketch'}>Hello Sketch</Link> </span>
       </nav>
     </div>
   );
