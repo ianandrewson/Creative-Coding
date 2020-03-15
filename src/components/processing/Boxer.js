@@ -66,7 +66,11 @@ export default function Boxer() {
     p5.rect(randomInt(p5.width, -50), randomInt(p5.height, -50), randomInt(p5.width), randomInt(p5.height));
   };
 
+  const mouseClicked = () => {
+    palette.newPalette();
+  };
+
   return (
-    <Sketch setup={setup} draw={draw} />
+    <Sketch setup={setup} draw={draw} mouseClicked={mouseClicked} />
   );
 }
